@@ -170,12 +170,12 @@ namespace Newspaper_CMS.Controllers
 
             switch (sortbydate)
             {
-                case "Article_PublishDate":
+                case "Sort by Date":
                     articlequery = articlequery.OrderBy(x => x.Article_PublishDate);
                     break;
-              
-
-
+                default:
+                    articlequery = articlequery.OrderByDescending(x => x.Article_PublishDate);
+                    break;
             }
 
             if (!String.IsNullOrEmpty(searchTitle))

@@ -22,6 +22,22 @@ namespace Newspaper_CMS.Controllers
         {
             return View();
         }
+        public IActionResult UserHomePage()
+        {
+            if (User.IsInRole("Admin"))
+            {
+                return LocalRedirect("/Articles/AdminHomePage");
+
+            }
+            else if (User.IsInRole("Writer"))
+            {
+                return LocalRedirect("/Articles/WriterHomePage");
+            }
+            else
+            {
+                return LocalRedirect("/Articles/Index");
+            }
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
