@@ -5,10 +5,15 @@
 }
 
 <h1>Articles</h1>
-@*
-<p>
+
+@if (User.IsInRole("Writer"))
+{
+    <p>
     <a asp-action="Create">Create New</a>
-</p>*@
+    </p>
+    
+}
+
 
 <form method="get" asp-action="Index">
     <p>
@@ -46,8 +51,45 @@
     <tbody>
 @foreach (var item in Model) {
 
-            if ( item.Article_Active == 1)
+            @if (User.IsInRole("Writer"))
             {
+                @if (item.Writer_Name == "Pancee")
+                {
+                     <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_Title)
+                    </td>
+                       <td>
+                        @Html.DisplayFor(modelItem => item.Category_Name)
+                    </td>
+                      <td>
+                        @Html.DisplayFor(modelItem => item.Writer_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_Active)
+                    </td>            
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_PublishDate)
+                    </td>
+       
+         
+                    <td>
+                         @if ( item.Article_Active == 1)
+                         {
+                             <a asp-action="Details" asp-route-id="@item.Article_ID" class="btn btn-primary">Details</a>
+                         }
+                    
+                            <a asp-action="Edit" asp-route-id="@item.Article_ID" class="btn btn-primary">Edit</a> 
+                            <a asp-action="Delete" asp-route-id="@item.Article_ID" class="btn btn-danger">Delete</a> 
+                            
+                    </td>
+                </tr>
+                    
+                }
+
+        }else{
+            
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Article_Title)
@@ -68,23 +110,25 @@
        
          
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.Article_ID" class="btn btn-primary">Details</a>
+                         @if ( item.Article_Active == 1)
+                         {
+                             <a asp-action="Details" asp-route-id="@item.Article_ID" class="btn btn-primary">Details</a>
+                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <a asp-action="Edit" asp-route-id="@item.Article_ID" class="btn btn-primary">Edit</a> 
                             <a asp-action="Delete" asp-route-id="@item.Article_ID" class="btn btn-danger">Delete</a> 
                             
                         }
-                    
-     
-                        
-
                     </td>
                 </tr>
+            
+        }
+
                 
             }
           
-}
+
     </tbody>
 </table>
  @if (User.IsInRole("Admin"))

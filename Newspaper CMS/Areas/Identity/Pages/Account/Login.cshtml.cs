@@ -129,11 +129,11 @@ namespace Newspaper_CMS.Areas.Identity.Pages.Account
                     {
                         return LocalRedirect("/Articles/AdminHomePage");
                     }
-                    else if (roles.Contains("Writer"))
-                    {
-                        return LocalRedirect("/Articles/WriterHomePage");
+                    //else if (roles.Contains("Writer"))
+                    //{
+                    //    return LocalRedirect("/Articles/WriterHomePage");
 
-                    }
+                    //}
                     else
                     {
                         return LocalRedirect("/Articles/Index");

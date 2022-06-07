@@ -1,7 +1,107 @@
-﻿
+﻿@model IEnumerable<Newspaper_CMS.Models.Article>
+
 @{
-    ViewData["Title"] = "WriterHomePage";
+    ViewData["Title"] = "Writer Articles";
 }
 
-<h1>WriterHomePage</h1>
+<h1>Writer Articles</h1>
 
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get" asp-action="Index">
+    <p>
+        <input type="search" placeholder="Enter Article Name,Writer Name or Article Category...." name="searchTitle" value="@ViewData["GetArticleDetails"]" style="width:500px;"
+        />
+        <input type="submit" value="Search" class="btn btn-primary"/>
+        <a asp-action="Index" asp-route-sortbydate="@ViewData["Datesorted"]" class="btn btn-secondary">Sort by Date</a>
+        <a asp-action="Index">Get All Articles</a>
+    </p>
+
+</form>
+
+
+<table class="table">
+    <thead>
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Article_Title)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.Category_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Writer_Name)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Article_Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Article_PublishDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+              @foreach (var item in Model) {
+
+                   @if(item.Writer_Name=="Mariam")
+                   {
+                   <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_Title)
+                    </td>
+                       <td>
+                        @Html.DisplayFor(modelItem => item.Category_Name)
+                    </td>
+                      <td>
+                        @Html.DisplayFor(modelItem => item.Writer_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_Active)
+                    </td>            
+                  
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_PublishDate)
+                    </td>
+       
+         
+                    <td>
+                         @if (item.Article_Active == 1)
+                         {
+                             <a asp-action="Details" asp-route-id="@item.Article_ID" class="btn btn-primary">Details</a>
+                         }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.Article_ID" class="btn btn-primary">Edit</a> 
+                            <a asp-action="Delete" asp-route-id="@item.Article_ID" class="btn btn-danger">Delete</a> 
+                            
+                        }
+                    
+     
+                        
+
+                    </td>
+                </tr>
+                }
+               }
+                
+            
+        }
+      
+
+          
+
+    </tbody>
+</table>
+            
+                       
+
+     
+ @if (User.IsInRole("Admin"))
+{
+      <a asp-action="AdminHomePage"  class="btn btn-primary">Back</a> 
+    
+}
