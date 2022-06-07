@@ -99,6 +99,9 @@ namespace Newspaper_CMS.Controllers
             {
                 try
                 {
+                    var _article = await _context.Articles.FindAsync(article.Article_ID);
+                    _article.Article_Active = article.Article_Active;
+                   
                     _context.Update(article);
                     await _context.SaveChangesAsync();
                 }
@@ -187,6 +190,17 @@ namespace Newspaper_CMS.Controllers
             return View(await articlequery.AsNoTracking().ToListAsync());
 
         }
+        public IActionResult AdminHomePage()
+        {
+            return View();
+        }
+
+        public IActionResult WriterHomePage()
+        {
+            return View();
+        }
+
+    
 
     }
 }

@@ -22,9 +22,12 @@ namespace Newspaper_CMS.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -112,9 +115,30 @@ namespace Newspaper_CMS.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var user = _signInManager.UserManager.Users.Where(u => u.Email == Input.Email).FirstOrDefault();
+                if (user == null)
+                    return Page();
+                var result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                //var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    bool res = true;
+                    var roles = await _userManager.GetRolesAsync(user);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        return LocalRedirect("/Articles/AdminHomePage");
+                    }
+                    else if (roles.Contains("Writer"))
+                    {
+                        return LocalRedirect("/Articles/WriterHomePage");
+
+                    }
+                    else
+                    {
+                        return LocalRedirect("/Articles/Index");
+                    }
+                    // ApplicationUser user = await UserManager.FindAsync(user.Email, user.PasswordHash);
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
@@ -133,6 +157,7 @@ namespace Newspaper_CMS.Areas.Identity.Pages.Account
                     return Page();
                 }
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();
