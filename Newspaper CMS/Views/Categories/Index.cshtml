@@ -22,9 +22,9 @@
                         @Html.DisplayFor(modelItem => item.Category_Name)
              </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Category_Name">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Category_Name">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Category_Name">Delete</a>
+                
+                <a asp-action="Details" asp-route-id="@item.Category_Name" class="btn btn-primary">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Category_Name class="btn btn-danger">Delete</a>
             </td>
         </tr>
 }

@@ -13,7 +13,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Article_ID" />
-@*            <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Article_Title" class="control-label"></label>
                 <input asp-for="Article_Title" class="form-control" />
                 <span asp-validation-for="Article_Title" class="text-danger"></span>
@@ -32,17 +32,17 @@
                 <label asp-for="Article_PublishDate" class="control-label"></label>
                 <input asp-for="Article_PublishDate" class="form-control" />
                 <span asp-validation-for="Article_PublishDate" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="Article_Active" class="control-label"></label>
                 <input asp-for="Article_Active" class="form-control" />
                 <span asp-validation-for="Article_Active" class="text-danger"></span>
             </div>
-@*            <div class="form-group">
+          <div class="form-group">
                 <label asp-for="Category_Name" class="control-label"></label>
                 <input asp-for="Category_Name" class="form-control" />
                 <span asp-validation-for="Category_Name" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

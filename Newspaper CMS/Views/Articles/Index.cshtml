@@ -45,7 +45,8 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-            if (item.Article_Active == 1)
+
+            if ( item.Article_Active == 1)
             {
                 <tr>
                     <td>
@@ -54,12 +55,13 @@
                        <td>
                         @Html.DisplayFor(modelItem => item.Category_Name)
                     </td>
-                         <td>
-                        @Html.DisplayFor(modelItem => item.Article_Active)
-                    </td>            
-                    <td>
+                      <td>
                         @Html.DisplayFor(modelItem => item.Writer_Name)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Article_Active)
+                    </td>            
+                  
                     <td>
                         @Html.DisplayFor(modelItem => item.Article_PublishDate)
                     </td>

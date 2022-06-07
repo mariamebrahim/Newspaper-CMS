@@ -121,6 +121,8 @@ namespace Newspaper_CMS.Controllers
             return View(article);
         }
 
+  
+
         // GET: Articles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -176,9 +178,9 @@ namespace Newspaper_CMS.Controllers
                 case "Sort by Date":
                     articlequery = articlequery.OrderBy(x => x.Article_PublishDate);
                     break;
-                default:
-                    articlequery = articlequery.OrderByDescending(x => x.Article_PublishDate);
-                    break;
+                //default:
+                //    articlequery = articlequery.OrderByDescending(x => x.Article_PublishDate);
+                //    break;
             }
 
             if (!String.IsNullOrEmpty(searchTitle))
