@@ -36,3 +36,10 @@ In this Website  :
 - Anonymous user can list active articles and reorder list based on article date.
 - Anonymous user can search for articles by title,writer,Category.
 
+
+## Technologies Used
+
+-Asp.NET Core MVC
+-SQL Server
+
+
