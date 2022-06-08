@@ -14,5 +14,74 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background-image: url('../Neureveal Logo Colors-06.png');
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    margin-bottom: 60px;
+    background-color: rgb(29 29 29);
+    color: white;
 }
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+   
+    display: flex;
+    /*align-items: end;*/
+    justify-content: end;
+    margin-left:200px;
+}
+
+.centertext {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid orange;
+    box-shadow: 0 0 10px orange;
+}
+
+
+.textorange {
+    color: orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#login-submit {
+
+    background-image: linear-gradient(to right,darkorange, orange);
+}
+
+
+#registerSubmit {
+    background-image: linear-gradient(to right,darkorange, orange);
+}
+
+#table{
+    color:white;
+    background-color:rgb(128, 128, 128);
+}
+
+#NotActive {
+    box-shadow: 0 0 10px green;
+}
+#Active {
+    text-shadow: 10px 10px 10px red;
+}
+
+
+
+
+
+
+

@@ -4,48 +4,49 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>Article</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article_Title)
-        </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article_Title)
+            <h1><b>@Html.DisplayFor(model => model.Article_Title)</b></h1> 
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article_Description)
+            Publish Date :
+             @Html.DisplayFor(model => model.Article_PublishDate)
+           
         </dt>
-        <dd class = "col-sm-10">
+         <dd class = "col-sm-10">
+            <button id="login-submit">
+                  @Html.DisplayFor(model => model.Category_Name)
+
+            </button>
+             @if (@Model.Article_Active == 1)
+                {
+                    <img  src="~/Group 3266.png" width=80 style="margin-left:20px;" />
+
+                }
+                else
+                {
+                        <img  src="~/Ellipse 2.png" />
+                        <h6>Not-Active</h6>                      
+                }
+          
+        </dd>
+          <dt class = "col-sm-2">
+            Writer :
+            @Html.DisplayFor(model => model.Writer_Name)
+        </dt>
+      
+        <dt class = "col-sm-10" >
+             <h4 style="color:orange;">Article</h4>
+        </dt>
+        <dd class = "col-sm-10" style="background-color:grey; width:1000px">
             @Html.DisplayFor(model => model.Article_Description)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Writer_Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Writer_Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article_PublishDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article_PublishDate)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Article_Active)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Article_Active)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Category_Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Category_Name)
-        </dd>
+      
+        
+      
     </dl>
 </div>
 <div>
