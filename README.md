@@ -39,7 +39,7 @@ In this Website  :
 
 ## Technologies Used
 
--Asp.NET Core MVC
--SQL Server
+- Asp.NET Core MVC
+- SQL Server
 
 
